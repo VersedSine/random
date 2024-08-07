@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+    <title>random</title>
+    <meta charset="utf-8">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div id="main">
+        <form></form>
+        起始（含）<input type="number" id="start" value="-1">
+        <br>
+        结束（含）<input type="number" id="end" value="1">
+        <br>
+        数量<input type="number" id="num" value="10">
+        <br>
+        排序<input type="checkbox" id="sort">
+        <br>
+        <button onclick="btn_g()">生成</button>
+    </div>
+    <div id="output"></div>
+    <script>
+        function gebi(s){return document.getElementById(s);}
+        var start = gebi("start"),end = gebi("end"),num = gebi("num");
+        var sort = gebi("sort"),ch1 = gebi("ch1"),ch2 = gebi("ch2");
+        var output = gebi("output");
+
+        function btn_g(){
+            if(start.value>end.value) [start.value,end.value] = [end.value,start.value];
+            var a = new Array(Number(num.value));
+            for(var i=0;i<num.value;i++) a[i] = Number(Math.floor(Math.random()*(end.value-start.value+1))+Number(start.value));
+            output.innerHTML =  sort.checked?a.sort(function(a,b){return a-b}):a;
+            delete a;
+        }
+    </script>
+</body>
